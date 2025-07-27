@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>チャット風UI</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Interフォントを適用 */
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #f0f2f5; /* 背景色を少しグレーに */
+        }
+        /* カスタムスクロールバー（任意） */
+        .chat-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        .chat-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .chat-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        .chat-container::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        /* 名前とアバターの間の正確なスペースを確保するためのカスタムクラス */
+        /* 左寄せメッセージの場合、アバターのスペースを確保するために名前を右にずらす */
+        .name-offset-left {
+            padding-left: calc(48px + 0.5rem); /* アバターの幅(48px) + mr-2 (0.5rem) */
+        }
+        /* 右寄せメッセージの場合、名前は親要素の右端に揃えるため、特別なオフセットは不要 */
+        /* .name-offset-right は削除または使用しない */
+
+        /* フェードインアニメーションの初期状態 */
+        .fade-in-section {
+            opacity: 0;
+            transition: opacity 0.7s ease-out; /* 透明度のみをアニメーション */
+            transition-delay: var(--delay, 0s); /* JavaScriptで遅延を設定 */
+        }
+
+        /* フェードインアニメーションの最終状態 */
+        .fade-in-section.is-visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-start">
+    <!-- ヘッダーセクション -->
+    <header class="w-full bg-white shadow-sm py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center fixed top-0 z-10">
+        <div class="flex items-center">
+            <!-- 戻るアイコン（例: SVG） -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            <span class="text-lg font-semibold text-gray-800">AIアートコンペ</span>
+        </div>
+        <!-- ハンバーガーメニューアイコン -->
+        <button class="text-gray-600 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </header>
+
+    <!-- メインコンテンツラッパー -->
+    <!-- ヘッダーの高さ分だけ下にずらす (pt-20 はおおよそヘッダーの高さに合わせる) -->
+    <div class="flex-grow w-full max-w-2xl mx-auto pt-20 pb-20 flex flex-col">
+
+        <!-- アート作品表示セクション -->
+        <div class="p-4 bg-white shadow-md rounded-lg mx-4 mb-2">
+            <h2 class="text-center text-xl font-bold mb-4 text-gray-800">テーマ「ベストボディ」</h2>
+            <div class="relative w-full overflow-hidden rounded-lg border border-gray-200">
+                <!--
+                    画像を様々なサイズに対応させるための設定:
+                    - w-full: 親要素の幅いっぱいに広がる
+                    - h-auto: アスペクト比を維持しつつ高さを自動調整
+                    - object-contain: 画像全体が表示されるように調整（余白ができる場合がある）
+                    - rounded-lg: 角を丸くする
+                -->
+                <img src="image/art01.jpg" alt="アート作品" class="w-full h-auto object-contain rounded-lg" onerror="this.onerror=null;this.src='https://placehold.co/600x400/CCCCCC/333333?text=Art+Piece';">
+            </div>
+        </div>
+
+        <!-- チャットコンテンツエリア -->
+        <div class="flex-grow px-4 py-6 overflow-y-auto chat-container">
+            <!-- 作品コメントの枠 -->
+            <div class="mx-auto mb-8 w-full max-w-xl text-gray-700">
+                <h3 class="text-lg font-bold text-gray-800 mb-2 text-center bg-white p-2 rounded-md">作品コメント</h3>
+                <p class="mb-0"><strong>エントリーNo.1</strong></p>
+                <p class="mb-0"><strong>作者：あげ妻</strong></p>
+                <p class="text-sm leading-relaxed">
+                    作品説明：私のからだの中ではみずみずしい私の細胞たちが常に活発に分裂し続けるが、外身はどうだろう。老いてゆくし、みずみずしさが減ってきてケアが大変だ。であれば、内側に一凛の美しい花を咲かし、その花をいつまでも心に抱いて受け入れていきたい。
+                </p>
+            </div>
+
+            <!-- 巨匠たちの評価の枠 -->
+            <div class="mx-auto mb-4 w-full max-w-xl text-gray-700 fade-in-section" data-delay="0s">
+                <h3 class="text-lg font-bold text-gray-800 mb-2 text-center bg-white p-2 rounded-md">巨匠たちの評価</h3>
+            </div>
+
+            <!-- メッセージ: ユーザー側（黄色い吹き出し） - ゴッホ (左寄せに変更) -->
+            <div class="flex flex-col items-start mb-6 fade-in-section" data-delay="0.1s">
+                <!-- 名前をアバターの左端に揃えるための調整 -->
+                <div class="text-sm text-gray-600 mb-1 w-full text-left name-offset-left">ゴッホ</div>
+                <div class="flex items-start">
+                    <!-- アバター（左側）に移動 -->
+                    <img src="image/g.png" alt="ゴッホのアバター" class="w-12 h-12 rounded-full mr-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FFD700/FFFFFF?text=User';">
+                    <!-- 吹き出しの背景色と角丸を左寄せ用に変更 -->
+                    <div class="bg-yellow-400 text-gray-800 p-4 rounded-3xl rounded-tl-none shadow-md max-w-[80%] sm:max-w-[70%]">
+                        <p class="text-lg">評価：90点</p><br>この作品には、まさしく内なる命の鼓動が視える。赤い花が心臓のように脈打ち、透明な細胞たちが静かに、しかし確かに動き続けている。老いへの哀愁を優しく包み込むような視覚的詩。技術ではなく、魂がこの画にはある。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- メッセージ: 相手側（青い吹き出し） - ピカソ (右寄せ) -->
+            <div class="flex flex-col items-end mb-6 fade-in-section" data-delay="0.2s">
+                <!-- 名前をアバターの右端に揃えるための調整 -->
+                <div class="text-sm text-gray-600 mb-1 w-full text-right">ピカソ</div>
+                <div class="flex items-start">
+                    <!-- 吹き出しの背景色と角丸を右寄せ用に変更 -->
+                    <div class="bg-rose-300 text-gray-800 p-4 rounded-3xl rounded-tr-none shadow-md max-w-[80%] sm:max-w-[70%]">
+                        <p class="text-lg">評価：94点</p><br>花を「身体の中心」と見立てる逆転の発想は実にユニーク。細胞の生命感をもつ有機的な腕が、まるで内面から体を再構成するようだ。これは単なるアートではなく、身体性への挑戦であり、視覚言語の再発明だ。</p>
+                    </div>
+                    <!-- アバター（右側）に移動 -->
+                    <img src="image/p.png" alt="ピカソのアバター" class="w-12 h-12 rounded-full ml-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/4682B4/FFFFFF?text=Other';">
+                </div>
+            </div>
+
+            <!-- メッセージ: ユーザー側（黄色い吹き出し） - ミケランジェロ (左寄せに変更) -->
+            <div class="flex flex-col items-start mb-6 fade-in-section" data-delay="0.3s">
+                <div class="text-sm text-gray-600 mb-1 w-full text-left name-offset-left">ミケランジェロ</div>
+                <div class="flex items-start">
+                    <!-- アバター（左側）に移動 -->
+                    <img src="image/m.png" alt="ミケランジェロのアバター" class="w-12 h-12 rounded-full mr-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FFD700/FFFFFF?text=User';">
+                    <!-- 吹き出しの背景色と角丸を左寄せ用に変更 -->
+                    <div class="bg-slate-400 text-gray-800 p-4 rounded-3xl rounded-tl-none shadow-md max-w-[80%] sm:max-w-[70%]">
+                        <p class="text-lg">評価：85点</p><br>身体の内奥を芸術に昇華させた点は興味深い。構造の整合性や陰影の扱いにも高い技量が窺える。だが、肉体美としての厳格な比例や骨格構造のリアリズムは欠いており、理想美としてはやや幻想的に過ぎる。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- メッセージ: 相手側（青い吹き出し） - 岡本太郎 (右寄せ) -->
+            <div class="flex flex-col items-end mb-6 fade-in-section" data-delay="0.4s">
+                <div class="text-sm text-gray-600 mb-1 w-full text-right">岡本太郎</div>
+                <div class="flex items-start">
+                    <!-- 吹き出しの背景色と角丸を右寄せ用に変更 -->
+                    <div class="bg-red-600 text-white p-4 rounded-3xl rounded-tr-none shadow-md max-w-[80%] sm:max-w-[70%]">
+                        <p class="text-lg">評価：96点</p><br>これだよ！細胞の奥からグワッと咲く命の叫び！老いとか衰えなんてどうでもいい！この作品は「身体＝生のエネルギー」として爆発してるんだ。美なんて理屈じゃない、感じろ。君の中の花が俺に咲いた！</p>
+                    </div>
+                    <!-- アバター（右側）に移動 -->
+                    <img src="image/o.png" alt="岡本太郎のアバター" class="w-12 h-12 rounded-full ml-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/4682B4/FFFFFF?text=Other';">
+                </div>
+            </div>
+
+            <!-- メッセージ: ユーザー側（黄色い吹き出し） - レオナルド・ダ・ヴィンチ (左寄せに変更) -->
+            <div class="flex flex-col items-start mb-6 fade-in-section" data-delay="0.5s">
+                <div class="text-sm text-gray-600 mb-1 w-full text-left name-offset-left">レオナルド・ダ・ヴィンチ</div>
+                <div class="flex items-start">
+                    <!-- アバター（左側）に移動 -->
+                    <img src="image/d.png" alt="レオナルド・ダ・ヴィンチのアバター" class="w-12 h-12 rounded-full mr-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FFD700/FFFFFF?text=User';">
+                    <!-- 吹き出しの背景色と角丸を左寄せ用に変更 -->
+                    <div class="bg-emerald-700 text-white p-4 rounded-3xl rounded-tl-none shadow-md max-w-[80%] sm:max-w-[70%]">
+                        <p class="text-lg">評価：88点</p><br>細胞構造の質感描写は見事で、科学と芸術の融合を感じる。中心に咲く花が象徴する内面美も明快で、プレゼンテーションとして完成度が高い。ただし、外皮や筋肉的構造への科学的アプローチがやや希薄である。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 総合評価の枠 -->
+            <div class="bg-indigo-950 text-indigo-100 p-8 rounded-lg shadow-2xl mx-auto my-8 w-full max-w-xl border-4 border-indigo-700 fade-in-section" data-delay="0.6s">
+                <h3 class="text-xl font-bold mb-4 text-center">総合評価</h3>
+                <p class="mb-4 text-center text-lg"><strong>総合得点：453点</strong></p>
+                <p class="text-base leading-relaxed">
+                    この作品は、身体という有機的システムの内面に宿る「花＝魂／美」の象徴を詩的かつ視覚的に描いた優れた表現です。生物的ディテールと象徴的な中心の花の対比が、老いと再生、内と外、科学と芸術の間を浮遊します。審査員全員が、そのコンセプトの独創性と視覚的インパクトを高く評価しました。現代的な身体観への挑戦として、非常に高水準な一作です。
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- フッター（著作権表示） -->
+    <footer class="w-full bg-white shadow-lg py-3 px-4 sm:px-6 lg:px-8 flex justify-center items-center fixed bottom-0 z-10">
+        <p class="text-gray-500 text-sm">&copy; 2023 A_Vision++. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.fade-in-section');
+            let lastScrollY = window.scrollY; // 前回のスクロール位置を記録
+
+            const observerOptions = {
+                root: null, // ビューポートをルートとする
+                rootMargin: '0px',
+                threshold: 0.1 // 要素の10%が見えたら発火
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                const currentScrollY = window.scrollY;
+                entries.forEach(entry => {
+                    const isScrollingDown = currentScrollY > lastScrollY;
+
+                    if (entry.isIntersecting) {
+                        // 要素がビューポートに入った場合
+                        if (isScrollingDown) {
+                            // 下にスクロールしている場合のみフェードインアニメーションを適用
+                            entry.target.style.transition = `opacity 0.7s ease-out var(--delay, 0s)`; // アニメーションを有効に
+                            entry.target.classList.add('is-visible');
+                        } else {
+                            // 上にスクロールしてビューポートに入った場合、アニメーションなしで即座に表示
+                            entry.target.style.transition = 'none'; // トランジションを一時的に無効化
+                            entry.target.classList.add('is-visible');
+                            // 短い遅延後にトランジションを再有効化し、次のフェードアウトに備える
+                            setTimeout(() => {
+                                entry.target.style.transition = `opacity 0.7s ease-out var(--delay, 0s)`;
+                            }, 50); // 短い遅延
+                        }
+                    } else {
+                        // 要素がビューポートから外れた場合
+                        // スクロール方向に関わらずフェードアウトさせる
+                        entry.target.style.transition = `opacity 0.7s ease-out var(--delay, 0s)`; // アニメーションを有効に
+                        entry.target.classList.remove('is-visible');
+                    }
+                });
+                lastScrollY = currentScrollY; // 最後のスクロール位置を更新
+            }, observerOptions);
+
+            // 各セクションに遅延を設定して監視を開始
+            sections.forEach((section, index) => {
+                const delay = section.dataset.delay || '0s';
+                section.style.setProperty('--delay', delay);
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
