@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIアートコンペ</title>
+    <!-- OGP Settings -->
+    <meta property="og:title" content="AIアートコンペ - テーマ「ベストボディ」">
+    <meta property="og:description" content="本日のAIアートコンペ作品「ベストボディ」の評価とコメント。巨匠たちの視点から作品を深く掘り下げます。">
+    <meta property="og:image" content="image/ogp01.jpg">
+    <meta property="og:url" content="https://neo-pixelator.github.io/ai-art-competition/">
+    <meta property="og:type" content="website">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <!-- Twitter Card Settings (Optional but recommended for Twitter) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AIアートコンペ - テーマ「ベストボディ」">
+    <meta name="twitter:description" content="本日のAIアートコンペ作品「ベストボディ」の評価とコメント。巨匠たちの視点から作品を深く掘り下げます。">
+    <meta name="twitter:image" content="image/ogp01.jpg">
+    <meta name="twitter:url" content="https://neo-pixelator.github.io/ai-art-competition/">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #f0f2f5;
+        }
+        .chat-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        .chat-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .chat-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        .chat-container::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        /* 左寄せメッセージの名前の位置を調整 */
+        .name-offset-left {
+            padding-left: calc(48px + 0.5rem); /* アバター幅 + マージン */
+        }
+        /* フェードインアニメーションの初期状態 */
+        .fade-in-section {
+            opacity: 0;
+            transition: opacity 0.7s ease-out;
+            transition-delay: var(--delay, 0s);
+        }
+        /* フェードインアニメーションの最終状態 */
+        .fade-in-section.is-visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-start">
+    <!-- メインコンテンツラッパー -->
+    <div class="flex-grow w-full max-w-2xl mx-auto pt-4 pb-20 flex flex-col">
+
+        <!-- アート作品表示セクション -->
+        <div class="p-4 bg-white shadow-md rounded-lg mx-4 mb-2">
+            <h2 class="text-center text-xl font-bold mb-4 text-gray-800">テーマ「ベストボディ」</h2>
+            <div class="relative w-full overflow-hidden rounded-lg border border-gray-200">
+                <img src="image/master10.jpg" alt="アート作品" class="w-full h-auto object-contain rounded-lg" onerror="this.onerror=null;this.src='https://placehold.co/600x400/CCCCCC/333333?text=Art+Piece';">
+            </div>
+        </div>
+
+        <!-- チャットコンテンツエリア -->
+        <div class="flex-grow px-4 py-6 overflow-y-auto chat-container">
+            <!-- 作品コメントの枠 -->
+            <div class="mx-auto mb-8 w-full max-w-xl text-gray-700">
+                <h3 class="text-lg font-bold text-gray-800 mb-2 text-center bg-white p-2 rounded-md">作品コメント</h3>
+                <p class="mb-0"><strong>エントリーNo.10</strong></p>
+                <p class="mb-0 text-lg font-bold">作者：しゅがー</p>
+                <p class="text-sm leading-relaxed">
+                    私のベストボディ。歳を取っても歯も胃腸も元気で、お肉が食べられる体でいたい。歌って踊って遊びまくるおばあちゃんになる。グレイヘアに緑の浴衣で、大好きなお祭りに参加。片手にビール、もう片手にマイク。子供の頃から大好きな「食べる・歌う・踊る」を死ぬまで満喫したい。
+                </p>
+            </div>
+
+            <!-- 巨匠たちの評価の枠 -->
+            <div class="mx-auto mb-4 w-full max-w-xl text-gray-700 fade-in-section" data-delay="0s">
+                <h3 class="text-lg font-bold text-gray-800 mb-2 text-center bg-white p-2 rounded-md">巨匠たちの評価</h3>
+            </div>
+
+            <!-- メッセージ: ユーザー側（黄色い吹き出し） - ゴッホ (左寄せ) -->
+            <div class="flex flex-col items-start mb-6 fade-in-section" data-delay="0.1s">
+                <div class="text-sm text-gray-600 mb-1 w-full text-left name-offset-left text-lg font-bold">ゴッホ</div>
+                <div class="flex items-start">
+                    <img src="image/g.png" alt="ゴッホのアバター" class="w-12 h-12 rounded-full mr-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FFD700/FFFFFF?text=User';">
+                    <div class="bg-yellow-400 text-gray-800 p-4 rounded-3xl rounded-tl-none shadow-md max-w-[80%] sm:max-w-[70%]">
+                        <p>この笑顔は、まるで魂が陽光に照らされているかのようだ。年齢を重ねてもなお「食べる・歌う・踊る」を貫くその姿に、生の歓喜が脈打っている。ビールの琥珀色、緑の浴衣、灯籠の光——色彩が生の祝祭を奏でており、心に温かな感情の波が広がる。</p>
+                        <p class="text-lg">評価：92点</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- メッセージ: 相手側（青い吹き出し） - ピカソ (右寄せ) -->
+            <div class="flex flex-col items-end mb-6 fade-in-section" data-delay="0.2s">
+                <div class="text-sm text-gray-600 mb-1 w-full text-right pr-14 text-lg font-bold">ピカソ</div>
+                <div class="flex items-start flex-row-reverse">
+                    <img src="image/p.png" alt="ピカソのアバター" class="w-12 h-12 rounded-full ml-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/4682B4/FFFFFF?text=Other';">
+                    <div class="bg-rose-300 text-gray-800 p-4 rounded-3xl rounded-tr-none shadow-md max-w-[80%] sm:max-w-[70%]">
+                        <p>身体美といえば筋肉や均整という常識を覆す作品だ。この「ベストボディ」は老いを祝福する身体——大胆不敵な再定義だ。片手にビール、もう一方にマイク。これが芸術だよ。自由でユニーク、自分の人生を舞台にしたパフォーマンス。ブラボー。</p>
+                        <p class="text-lg">評価：95点</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- メッセージ: ユーザー側（黄色い吹き出し） - ミケランジェロ (左寄せ) -->
+            <div class="flex flex-col items-start mb-6 fade-in-section" data-delay="0.3s">
+                <div class="text-sm text-gray-600 mb-1 w-full text-left name-offset-left text-lg font-bold">ミケランジェロ</div>
+                <div class="flex items-start">
+                    <img src="image/m.png" alt="ミケランジェロのアバター" class="w-12 h-12 rounded-full mr-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FFD700/FFFFFF?text=User';">
+                    <div class="bg-slate-400 text-gray-800 p-4 rounded-3xl rounded-tl-none shadow-md max-w-[80%] sm:max-w-[70%]">
+                        <p>構造的には肉体の精密な描写は見られないが、姿勢や表情に宿る生命力に感銘を受ける。光の配置と色彩の調和も良く、特に背景の灯りが荘厳さを与えている。技術面ではやや粗い印象もあるが、喜びを讃えるその姿勢は称賛に値する。</p>
+                        <p class="text-lg">評価：85点</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- メッセージ: 相手側（青い吹き出し） - 岡本太郎 (右寄せ) -->
+            <div class="flex flex-col items-end mb-6 fade-in-section" data-delay="0.4s">
+                <div class="text-sm text-gray-600 mb-1 w-full text-right pr-14 text-lg font-bold">岡本太郎</div>
+                <div class="flex items-start flex-row-reverse">
+                    <img src="image/o.png" alt="岡本太郎のアバター" class="w-12 h-12 rounded-full ml-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/4682B4/FFFFFF?text=Other';">
+                    <div class="bg-red-600 text-white p-4 rounded-3xl rounded-tr-none shadow-md max-w-[80%] sm:max-w-[70%]">
+                        <p>こいつはヤバい。祭りだ！人生だ！芸術だ！「グレイヘアの元気なおばあちゃん」がマイクとビールで全開パワーを爆発させてる。この身体表現は、筋肉でもフォルムでもない。「生きることそのもの」なんだ。理屈なんて要らない、体が勝手に反応した！</p>
+                        <p class="text-lg">評価：98点</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- メッセージ: ユーザー側（黄色い吹き出し） - レオナルド・ダ・ヴィンチ (左寄せ) -->
+            <div class="flex flex-col items-start mb-6 fade-in-section" data-delay="0.5s">
+                <div class="text-sm text-gray-600 mb-1 w-full text-left name-offset-left text-lg font-bold">レオナルド・ダ・ヴィンチ</div>
+                <div class="flex items-start">
+                    <img src="image/d.png" alt="レオナルド・ダ・ヴィンチのアバター" class="w-12 h-12 rounded-full mr-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FFD700/FFFFFF?text=User';">
+                    <div class="bg-emerald-700 text-white p-4 rounded-3xl rounded-tl-none shadow-md max-w-[80%] sm:max-w-[70%]">
+                        <p>美とは均整と調和に宿るものだが、本作は“調和ある精神と肉体”を表現している点が興味深い。衣装の選定、色彩のバランス、構図は合理的かつ観察に基づいており、テーマ性を明確に提示している。理想の肉体とは内面の充実を映す鏡であるという提案だ。</p>
+                        <p class="text-lg">評価：88点</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 総合評価の枠 -->
+            <div class="bg-indigo-950 text-indigo-100 p-8 rounded-lg shadow-2xl mx-auto my-8 w-full max-w-xl border-4 border-indigo-700 fade-in-section" data-delay="0.6s">
+                <h3 class="text-xl font-bold mb-4 text-center">総合評価</h3>
+                <p class="mb-4 text-center text-lg"><strong>総合得点：458点 / 500点</strong></p>
+                <p class="text-base leading-relaxed">
+                    本作は、「身体の美とは何か」という問いに対し、老いと楽しさ、生きる歓びを通じて斬新な回答を提示しています。見た目の造形を超えた“生きる力”の具現化として、強烈な印象を残しました。技巧的精緻さではなく、感情・概念・現在性の三位一体が評価を引き上げた、非常に現代的なベストボディの表現です。
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- フッター（著作権表示） -->
+    <footer class="w-full bg-white shadow-lg py-3 px-4 sm:px-6 lg:px-8 flex justify-center items-center fixed bottom-0 z-10">
+        <p class="text-gray-500 text-sm">&copy; 2025 A_Vision++. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.fade-in-section');
+            let lastScrollY = window.scrollY;
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                const currentScrollY = window.scrollY;
+                entries.forEach(entry => {
+                    const isScrollingDown = currentScrollY > lastScrollY;
+
+                    if (entry.isIntersecting) {
+                        if (isScrollingDown) {
+                            entry.target.style.transition = `opacity 0.7s ease-out var(--delay, 0s)`;
+                            entry.target.classList.add('is-visible');
+                        } else {
+                            entry.target.style.transition = 'none';
+                            entry.target.classList.add('is-visible');
+                            setTimeout(() => {
+                                entry.target.style.transition = `opacity 0.7s ease-out var(--delay, 0s)`;
+                            }, 50);
+                        }
+                    } else {
+                        entry.target.style.transition = `opacity 0.7s ease-out var(--delay, 0s)`;
+                        entry.target.classList.remove('is-visible');
+                    }
+                });
+                lastScrollY = currentScrollY;
+            }, observerOptions);
+
+            sections.forEach((section, index) => {
+                const delay = section.dataset.delay || '0s';
+                section.style.setProperty('--delay', delay);
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

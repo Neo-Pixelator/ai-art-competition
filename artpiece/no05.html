@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIアートコンペ</title>
+    <!-- OGP Settings -->
+    <meta property="og:title" content="AIアートコンペ - テーマ「ベストボディ」">
+    <meta property="og:description" content="本日のAIアートコンペ作品「ベストボディ」の評価とコメント。巨匠たちの視点から作品を深く掘り下げます。">
+    <meta property="og:image" content="image/ogp01.jpg">
+    <meta property="og:url" content="https://neo-pixelator.github.io/ai-art-competition/">
+    <meta property="og:type" content="website">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <!-- Twitter Card Settings (Optional but recommended for Twitter) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AIアートコンペ - テーマ「ベストボディ」">
+    <meta name="twitter:description" content="本日のAIアートコンペ作品「ベストボディ」の評価とコメント。巨匠たちの視点から作品を深く掘り下げます。">
+    <meta name="twitter:image" content="image/ogp01.jpg">
+    <meta name="twitter:url" content="https://neo-pixelator.github.io/ai-art-competition/">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #f0f2f5;
+        }
+        .chat-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        .chat-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .chat-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        .chat-container::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        /* 左寄せメッセージの名前の位置を調整 */
+        .name-offset-left {
+            padding-left: calc(48px + 0.5rem); /* アバター幅 + マージン */
+        }
+        /* フェードインアニメーションの初期状態 */
+        .fade-in-section {
+            opacity: 0;
+            transition: opacity 0.7s ease-out;
+            transition-delay: var(--delay, 0s);
+        }
+        /* フェードインアニメーションの最終状態 */
+        .fade-in-section.is-visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-start">
+    <!-- メインコンテンツラッパー -->
+    <div class="flex-grow w-full max-w-2xl mx-auto pt-4 pb-20 flex flex-col">
+
+        <!-- アート作品表示セクション -->
+        <div class="p-4 bg-white shadow-md rounded-lg mx-4 mb-2">
+            <h2 class="text-center text-xl font-bold mb-4 text-gray-800">テーマ「ベストボディ」</h2>
+            <div class="relative w-full overflow-hidden rounded-lg border border-gray-200">
+                <img src="image/master05.jpg" alt="アート作品" class="w-full h-auto object-contain rounded-lg" onerror="this.onerror=null;this.src='https://placehold.co/600x400/CCCCCC/333333?text=Art+Piece';">
+            </div>
+        </div>
+
+        <!-- チャットコンテンツエリア -->
+        <div class="flex-grow px-4 py-6 overflow-y-auto chat-container">
+            <!-- 作品コメントの枠 -->
+            <div class="mx-auto mb-8 w-full max-w-xl text-gray-700">
+                <h3 class="text-lg font-bold text-gray-800 mb-2 text-center bg-white p-2 rounded-md">作品コメント</h3>
+                <p class="mb-0"><strong>エントリーNo.5</strong></p>
+                <p class="mb-0 text-lg font-bold">作者：たからん</p>
+                <p class="text-sm leading-relaxed">
+                    私のベストボディ。それは、体と心の「姿勢」が整うということ。体型は、チビでお腹がでっぷりした足が生えた風船。でもそんな見た目など関係ない。自らの信念を整え、内なる姿勢を整えたら、体の姿勢も整う。その心身が一体化した状態が、ベストな身体だと思う。
+                </p>
+            </div>
+
+            <!-- 巨匠たちの評価の枠 -->
+            <div class="mx-auto mb-4 w-full max-w-xl text-gray-700 fade-in-section" data-delay="0s">
+                <h3 class="text-lg font-bold text-gray-800 mb-2 text-center bg-white p-2 rounded-md">巨匠たちの評価</h3>
+            </div>
+
+            <!-- メッセージ: ユーザー側（黄色い吹き出し） - ゴッホ (左寄せ) -->
+            <div class="flex flex-col items-start mb-6 fade-in-section" data-delay="0.1s">
+                <div class="text-sm text-gray-600 mb-1 w-full text-left name-offset-left text-lg font-bold">ゴッホ</div>
+                <div class="flex items-start">
+                    <img src="image/g.png" alt="ゴッホのアバター" class="w-12 h-12 rounded-full mr-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FFD700/FFFFFF?text=User';">
+                    <div class="bg-yellow-400 text-gray-800 p-4 rounded-3xl rounded-tl-none shadow-md max-w-[80%] sm:max-w-[70%]">
+                        <p>柔らかな陽光に包まれた瞑想の姿。そこには「見た目」よりも「内なる静けさ」が身体を満たしている。肥満というラベルを拒否し、自己との調和を選んだその姿は、苦悩と希望を共に抱える人間の真実を映している。自然と一体となったその静寂に、私は強く心を打たれた。</p>
+                        <p class="text-lg">評価：92点</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- メッセージ: 相手側（青い吹き出し） - ピカソ (右寄せ) -->
+            <div class="flex flex-col items-end mb-6 fade-in-section" data-delay="0.2s">
+                <div class="text-sm text-gray-600 mb-1 w-full text-right pr-14 text-lg font-bold">ピカソ</div>
+                <div class="flex items-start flex-row-reverse">
+                    <img src="image/p.png" alt="ピカソのアバター" class="w-12 h-12 rounded-full ml-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/4682B4/FFFFFF?text=Other';">
+                    <div class="bg-rose-300 text-gray-800 p-4 rounded-3xl rounded-tr-none shadow-md max-w-[80%] sm:max-w-[70%]">
+                        <p>この作品は身体の規範に挑む反抗だ。だらしない？違う、これは思想の肉体化だ。誰が“ベスト”を定義する？このぽっこり腹が世界と対峙している。技法はクラシックだが、メッセージ性は鋭利だ。もっと構図に歪みや多面性があれば、更に突き抜けただろう。</p>
+                        <p class="text-lg">評価：89点</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- メッセージ: ユーザー側（黄色い吹き出し） - ミケランジェロ (左寄せ) -->
+            <div class="flex flex-col items-start mb-6 fade-in-section" data-delay="0.3s">
+                <div class="text-sm text-gray-600 mb-1 w-full text-left name-offset-left text-lg font-bold">ミケランジェロ</div>
+                <div class="flex items-start">
+                    <img src="image/m.png" alt="ミケランジェロのアバター" class="w-12 h-12 rounded-full mr-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FFD700/FFFFFF?text=User';">
+                    <div class="bg-slate-400 text-gray-800 p-4 rounded-3xl rounded-tl-none shadow-md max-w-[80%] sm:max-w-[70%]">
+                        <p>身体という神の造形において、伝統的美を超えた形がここにある。構図は安定し、背景の滝と人物の静けさが調和を見せる。技術的には光の取り込み、衣の表現が見事。ただ、解剖学的な構造や緊張感に欠ける。精神性に重きを置いたのは理解できるが、形の気高さがもう一歩欲しかった。</p>
+                        <p class="text-lg">評価：84点</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- メッセージ: 相手側（青い吹き出し） - 岡本太郎 (右寄せ) -->
+            <div class="flex flex-col items-end mb-6 fade-in-section" data-delay="0.4s">
+                <div class="text-sm text-gray-600 mb-1 w-full text-right pr-14 text-lg font-bold">岡本太郎</div>
+                <div class="flex items-start flex-row-reverse">
+                    <img src="image/o.png" alt="岡本太郎のアバター" class="w-12 h-12 rounded-full ml-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/4682B4/FFFFFF?text=Other';">
+                    <div class="bg-red-600 text-white p-4 rounded-3xl rounded-tr-none shadow-md max-w-[80%] sm:max-w-[70%]">
+                        <p>爆発してる！静けさの中に燃える意志！いいじゃないか、このお腹！「恥」も「誇り」も超えて、身体が思想になった時、それは“芸術”になる。場所も最高だ。滝が彼の魂を洗っている。型破りな美、まさに挑戦だ。これは見た目じゃない、生き様の表現だ！</p>
+                        <p class="text-lg">評価：94点</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- メッセージ: ユーザー側（黄色い吹き出し） - レオナルド・ダ・ヴィンチ (左寄せ) -->
+            <div class="flex flex-col items-start mb-6 fade-in-section" data-delay="0.5s">
+                <div class="text-sm text-gray-600 mb-1 w-full text-left name-offset-left text-lg font-bold">レオナルド・ダ・ヴィンチ</div>
+                <div class="flex items-start">
+                    <img src="image/d.png" alt="レオナルド・ダ・ヴィンチのアバター" class="w-12 h-12 rounded-full mr-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FFD700/FFFFFF?text=User';">
+                    <div class="bg-emerald-700 text-white p-4 rounded-3xl rounded-tl-none shadow-md max-w-[80%] sm:max-w-[70%]">
+                        <p>構図は計算され、人物と自然との比が美しく設計されている。衣装の色彩バランスも視覚的に調和が取れており、プレゼンテーションは高水準。ただし、身体構造において力学的緊張が見られず、彫刻的な観点からはやや甘い。それでも、身体と精神の関係性を哲学的に追求しており、知的価値の高い試みである。</p>
+                        <p class="text-lg">評価：88点</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 総合評価の枠 -->
+            <div class="bg-indigo-950 text-indigo-100 p-8 rounded-lg shadow-2xl mx-auto my-8 w-full max-w-xl border-4 border-indigo-700 fade-in-section" data-delay="0.6s">
+                <h3 class="text-xl font-bold mb-4 text-center">総合評価</h3>
+                <p class="mb-4 text-center text-lg"><strong>総合得点：447点 / 500点</strong></p>
+                <p class="text-base leading-relaxed">
+                    この作品は「身体の理想」を外見ではなく、内面の姿勢・精神性に見出すという哲学的転回を大胆にビジュアル化した。巨匠たちはそれぞれの視点から、その表現を高く評価した。筋肉美とは別の「調和」「静寂」「信念」に宿る美が、見る者の価値観を問い直す力を持っている。まさにテーマ「ベストボディ」に対する深い一撃である。
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- フッター（著作権表示） -->
+    <footer class="w-full bg-white shadow-lg py-3 px-4 sm:px-6 lg:px-8 flex justify-center items-center fixed bottom-0 z-10">
+        <p class="text-gray-500 text-sm">&copy; 2025 A_Vision++. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.fade-in-section');
+            let lastScrollY = window.scrollY;
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                const currentScrollY = window.scrollY;
+                entries.forEach(entry => {
+                    const isScrollingDown = currentScrollY > lastScrollY;
+
+                    if (entry.isIntersecting) {
+                        if (isScrollingDown) {
+                            entry.target.style.transition = `opacity 0.7s ease-out var(--delay, 0s)`;
+                            entry.target.classList.add('is-visible');
+                        } else {
+                            entry.target.style.transition = 'none';
+                            entry.target.classList.add('is-visible');
+                            setTimeout(() => {
+                                entry.target.style.transition = `opacity 0.7s ease-out var(--delay, 0s)`;
+                            }, 50);
+                        }
+                    } else {
+                        entry.target.style.transition = `opacity 0.7s ease-out var(--delay, 0s)`;
+                        entry.target.classList.remove('is-visible');
+                    }
+                });
+                lastScrollY = currentScrollY;
+            }, observerOptions);
+
+            sections.forEach((section, index) => {
+                const delay = section.dataset.delay || '0s';
+                section.style.setProperty('--delay', delay);
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
