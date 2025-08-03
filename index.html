@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIアートコンペ</title>
+    <title>AIアートコンペ - トップページ</title>
     <!-- OGP Settings -->
-    <meta property="og:title" content="AIアートコンペ - テーマ「ベストボディ」">
-    <meta property="og:description" content="本日のAIアートコンペ作品「ベストボディ」の評価とコメント。巨匠たちの視点から作品を深く掘り下げます。">
-    <meta property="og:image" content="image/ogp01.jpg">
+    <meta property="og:title" content="AIアートコンペ - トップページ">
+    <meta property="og:description" content="AIアートコンペの全作品を一覧でご覧いただけます。">
+    <meta property="og:image" content="image01/ogp01.jpg">
     <meta property="og:url" content="https://neo-pixelator.github.io/ai-art-competition/">
     <meta property="og:type" content="website">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <!-- Twitter Card Settings (Optional but recommended for Twitter) -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AIアートコンペ - テーマ「ベストボディ」">
-    <meta name="twitter:description" content="本日のAIアートコンペ作品「ベストボディ」の評価とコメント。巨匠たちの視点から作品を深く掘り下げます。">
-    <meta name="twitter:image" content="image/ogp01.jpg">
+    <meta name="twitter:title" content="AIアートコンペ - トップページ">
+    <meta name="twitter:description" content="AIアートコンペの全作品を一覧でご覧いただけます。">
+    <meta name="twitter:image" content="image01/ogp01.jpg">
     <meta name="twitter:url" content="https://neo-pixelator.github.io/ai-art-competition/">
 
     <!-- Tailwind CSS CDN -->
@@ -26,183 +26,79 @@
             font-family: "Inter", sans-serif;
             background-color: #f0f2f5;
         }
-        .chat-container::-webkit-scrollbar {
-            width: 8px;
+        .container {
+            max-width: 1200px;
         }
-        .chat-container::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
+        .card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
-        .chat-container::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 10px;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
-        .chat-container::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-        /* 左寄せメッセージの名前の位置を調整 */
-        .name-offset-left {
-            padding-left: calc(48px + 0.5rem); /* アバター幅 + マージン */
-        }
-        /* フェードインアニメーションの初期状態 */
-        .fade-in-section {
-            opacity: 0;
-            transition: opacity 0.7s ease-out;
-            transition-delay: var(--delay, 0s);
-        }
-        /* フェードインアニメーションの最終状態 */
-        .fade-in-section.is-visible {
-            opacity: 1;
+        /* ヘッダーのグラデーション背景 */
+        .header-bg {
+            background-color: #1a202c; /* 濃い紺色 */
+            background-image: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            color: #ffffff;
+            box-shadow: 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-start">
+    <!-- ヘッダー -->
+    <header class="w-full header-bg py-6 mb-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold text-center">AIアートコンペ</h1>
+            <!-- 「テーマ」の3文字を「エントリー作品」と同じ文字サイズに、残りの「「ベストボディ」」を大きくしました -->
+            <p class="text-center mt-2 text-gray-300"><span class="text-base font-medium">テーマ</span><span class="text-xl font-medium">「ベストボディ」</span><span class="text-base font-medium"> エントリー作品</span></p>
+        </div>
+    </header>
+
     <!-- メインコンテンツラッパー -->
-    <div class="flex-grow w-full max-w-2xl mx-auto pt-4 pb-20 flex flex-col">
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+        <!-- 作品グリッド -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <script>
+                // 作者名の配列
+                const authors = [
+                    "あげ妻", "ちさこ", "カナダ", "てるにゃん", "たからん", "さっちゃん",
+                    "AYA", "ナオカナ", "YUMI", "しゅがー", "春男", "にこパパ",
+                    "龍珠ゆうこ", "ちひろーかる", "いつき", "ゆっき", "きしゃぽっぽ",
+                    "たくや", "きんまさ", "そらっこ", "ととちゃん"
+                ];
 
-        <!-- アート作品表示セクション -->
-        <div class="p-4 bg-white shadow-md rounded-lg mx-4 mb-2">
-            <h2 class="text-center text-xl font-bold mb-4 text-gray-800">テーマ「ベストボディ」</h2>
-            <div class="relative w-full overflow-hidden rounded-lg border border-gray-200">
-                <img src="image/art01.jpg" alt="アート作品" class="w-full h-auto object-contain rounded-lg" onerror="this.onerror=null;this.src='https://placehold.co/600x400/CCCCCC/333333?text=Art+Piece';">
-            </div>
+                // 作品カードを生成するループ
+                for (let i = 1; i <= 21; i++) {
+                    const number = i.toString().padStart(2, '0');
+                    // リンクを 'artpiece/noXX.html' に変更
+                    const link = `artpiece/no${number}.html`;
+                    // OGP画像とアート作品画像のパスを 'image01/ogpXX.jpg' と 'image01/artXX.jpg' に変更
+                    const ogpImage = `image01/ogp${number}.jpg`;
+                    const artImage = `image01/art${number}.jpg`;
+                    const authorName = authors[i - 1];
+                    const description = `作者：${authorName}`;
+                    
+                    document.write(`
+                        <a href="${link}" class="block card bg-white rounded-lg shadow-md hover:shadow-xl overflow-hidden">
+                            <div class="relative w-full h-48 sm:h-56 overflow-hidden">
+                                <img src="${artImage}" alt="AIアート作品 ${i}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/333333?text=Art+${i}';">
+                            </div>
+                            <div class="p-4 text-center">
+                                <h2 class="text-xl font-bold text-gray-800">エントリーNo.${i}</h2>
+                                <p class="text-sm text-gray-500 mt-1">${description}</p>
+                            </div>
+                        </a>
+                    `);
+                }
+            </script>
         </div>
-
-        <!-- チャットコンテンツエリア -->
-        <div class="flex-grow px-4 py-6 overflow-y-auto chat-container">
-            <!-- 作品コメントの枠 -->
-            <div class="mx-auto mb-8 w-full max-w-xl text-gray-700">
-                <h3 class="text-lg font-bold text-gray-800 mb-2 text-center bg-white p-2 rounded-md">作品コメント</h3>
-                <p class="mb-0"><strong>エントリーNo.1</strong></p>
-                <p class="mb-0 text-lg font-bold">作者：あげ妻</p>
-                <p class="text-sm leading-relaxed">
-                    作品説明：私のからだの中ではみずみずしい私の細胞たちが常に活発に分裂し続けるが、外身はどうだろう。老いてゆくし、みずみずしさが減ってきてケアが大変だ。であれば、内側に一凛の美しい花を咲かし、その花をいつまでも心に抱いて受け入れていきたい。
-                </p>
-            </div>
-
-            <!-- 巨匠たちの評価の枠 -->
-            <div class="mx-auto mb-4 w-full max-w-xl text-gray-700 fade-in-section" data-delay="0s">
-                <h3 class="text-lg font-bold text-gray-800 mb-2 text-center bg-white p-2 rounded-md">巨匠たちの評価</h3>
-            </div>
-
-            <!-- メッセージ: ユーザー側（黄色い吹き出し） - ゴッホ (左寄せ) -->
-            <div class="flex flex-col items-start mb-6 fade-in-section" data-delay="0.1s">
-                <div class="text-sm text-gray-600 mb-1 w-full text-left name-offset-left text-lg font-bold">ゴッホ</div>
-                <div class="flex items-start">
-                    <img src="image/g.png" alt="ゴッホのアバター" class="w-12 h-12 rounded-full mr-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FFD700/FFFFFF?text=User';">
-                    <div class="bg-yellow-400 text-gray-800 p-4 rounded-3xl rounded-tl-none shadow-md max-w-[80%] sm:max-w-[70%]">
-                        <p>この作品には、まさしく内なる命の鼓動が視える。赤い花が心臓のように脈打ち、透明な細胞たちが静かに、しかし確かに動き続けている。老いへの哀愁を優しく包み込むような視覚的詩。技術ではなく、魂がこの画にはある。</p>
-                        <p class="text-lg">評価：90点</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- メッセージ: 相手側（青い吹き出し） - ピカソ (右寄せ) -->
-            <div class="flex flex-col items-end mb-6 fade-in-section" data-delay="0.2s">
-                <div class="text-sm text-gray-600 mb-1 w-full text-right pr-14 text-lg font-bold">ピカソ</div>
-                <div class="flex items-start flex-row-reverse">
-                    <img src="image/p.png" alt="ピカソのアバター" class="w-12 h-12 rounded-full ml-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/4682B4/FFFFFF?text=Other';">
-                    <div class="bg-rose-300 text-gray-800 p-4 rounded-3xl rounded-tr-none shadow-md max-w-[80%] sm:max-w-[70%]">
-                        <p>花を「身体の中心」と見立てる逆転の発想は実にユニーク。細胞の生命感をもつ有機的な腕が、まるで内面から体を再構成するようだ。これは単なるアートではなく、身体性への挑戦であり、視覚言語の再発明だ。</p>
-                        <p class="text-lg">評価：94点</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- メッセージ: ユーザー側（黄色い吹き出し） - ミケランジェロ (左寄せ) -->
-            <div class="flex flex-col items-start mb-6 fade-in-section" data-delay="0.3s">
-                <div class="text-sm text-gray-600 mb-1 w-full text-left name-offset-left text-lg font-bold">ミケランジェロ</div>
-                <div class="flex items-start">
-                    <img src="image/m.png" alt="ミケランジェロのアバター" class="w-12 h-12 rounded-full mr-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FFD700/FFFFFF?text=User';">
-                    <div class="bg-slate-400 text-gray-800 p-4 rounded-3xl rounded-tl-none shadow-md max-w-[80%] sm:max-w-[70%]">
-                        <p>身体の内奥を芸術に昇華させた点は興味深い。構造の整合性や陰影の扱いにも高い技量が窺える。だが、肉体美としての厳格な比例や骨格構造のリアリズムは欠いており、理想美としてはやや幻想的に過ぎる。</p>
-                        <p class="text-lg">評価：85点</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- メッセージ: 相手側（青い吹き出し） - 岡本太郎 (右寄せ) -->
-            <div class="flex flex-col items-end mb-6 fade-in-section" data-delay="0.4s">
-                <div class="text-sm text-gray-600 mb-1 w-full text-right pr-14 text-lg font-bold">岡本太郎</div>
-                <div class="flex items-start flex-row-reverse">
-                    <img src="image/o.png" alt="岡本太郎のアバター" class="w-12 h-12 rounded-full ml-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/4682B4/FFFFFF?text=Other';">
-                    <div class="bg-red-600 text-white p-4 rounded-3xl rounded-tr-none shadow-md max-w-[80%] sm:max-w-[70%]">
-                        <p>これだよ！細胞の奥からグワッと咲く命の叫び！老いとか衰えなんてどうでもいい！この作品は「身体＝生のエネルギー」として爆発してるんだ。美なんて理屈じゃない、感じろ。君の中の花が俺に咲いた！</p>
-                        <p class="text-lg">評価：96点</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- メッセージ: ユーザー側（黄色い吹き出し） - レオナルド・ダ・ヴィンチ (左寄せ) -->
-            <div class="flex flex-col items-start mb-6 fade-in-section" data-delay="0.5s">
-                <div class="text-sm text-gray-600 mb-1 w-full text-left ml-14 text-lg font-bold">レオナルド・ダ・ヴィンチ</div>
-                <div class="flex items-start">
-                    <img src="image/d.png" alt="レオナルド・ダ・ヴィンチのアバター" class="w-12 h-12 rounded-full mr-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FFD700/FFFFFF?text=User';">
-                    <div class="bg-emerald-700 text-white p-4 rounded-3xl rounded-tl-none shadow-md max-w-[80%] sm:max-w-[70%]">
-                        <p>細胞構造の質感描写は見事で、科学と芸術の融合を感じる。中心に咲く花が象徴する内面美も明快で、プレゼンテーションとして完成度が高い。ただし、外皮や筋肉的構造への科学的アプローチがやや希薄である。</p>
-                        <p class="text-lg">評価：88点</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 総合評価の枠 -->
-            <div class="bg-indigo-950 text-indigo-100 p-8 rounded-lg shadow-2xl mx-auto my-8 w-full max-w-xl border-4 border-indigo-700 fade-in-section" data-delay="0.6s">
-                <h3 class="text-xl font-bold mb-4 text-center">総合評価</h3>
-                <p class="mb-4 text-center text-lg"><strong>総合得点：453点</strong></p>
-                <p class="text-base leading-relaxed">
-                    この作品は、身体という有機的システムの内面に宿る「花＝魂／美」の象徴を詩的かつ視覚的に描いた優れた表現です。生物的ディテールと象徴的な中心の花の対比が、老いと再生、内と外、科学と芸術の間を浮遊します。審査員全員が、そのコンセプトの独創性と視覚的インパクトを高く評価しました。現代的な身体観への挑戦として、非常に高水準な一作です。
-                </p>
-            </div>
-
-        </div>
-    </div>
+    </main>
 
     <!-- フッター（著作権表示） -->
     <footer class="w-full bg-white shadow-lg py-3 px-4 sm:px-6 lg:px-8 flex justify-center items-center fixed bottom-0 z-10">
         <p class="text-gray-500 text-sm">&copy; 2025 A_Vision++. All Rights Reserved.</p>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('.fade-in-section');
-            let lastScrollY = window.scrollY;
-
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                const currentScrollY = window.scrollY;
-                entries.forEach(entry => {
-                    const isScrollingDown = currentScrollY > lastScrollY;
-
-                    if (entry.isIntersecting) {
-                        if (isScrollingDown) {
-                            entry.target.style.transition = `opacity 0.7s ease-out var(--delay, 0s)`;
-                            entry.target.classList.add('is-visible');
-                        } else {
-                            entry.target.style.transition = 'none';
-                            entry.target.classList.add('is-visible');
-                            setTimeout(() => {
-                                entry.target.style.transition = `opacity 0.7s ease-out var(--delay, 0s)`;
-                            }, 50);
-                        }
-                    } else {
-                        entry.target.style.transition = `opacity 0.7s ease-out var(--delay, 0s)`;
-                        entry.target.classList.remove('is-visible');
-                    }
-                });
-                lastScrollY = currentScrollY;
-            }, observerOptions);
-
-            sections.forEach((section, index) => {
-                const delay = section.dataset.delay || '0s';
-                section.style.setProperty('--delay', delay);
-                observer.observe(section);
-            });
-        });
-    </script>
 </body>
 </html>
